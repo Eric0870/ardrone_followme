@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package>
+    <name>ardrone_followme</name>
+    <version>0.0.0</version>
+    <description>Package to support AR.Drone Follow Me application</description>
+  
+    <author email="jane.doe@example.com">Jane Doe</author>
+    <maintainer email="john@todo.todo">john</maintainer>
+
+    <license>BSD</license>
+    <url>https://github.com/Eric0870/CSCI_5551_Proj/ardrone_followme</url>
+
+    <buildtool_depend>catkin</buildtool_depend>
+
+    <build_depend>ardrone_autonomy</build_depend>
+    <build_depend>joy</build_depend>
+    <build_depend>rospy</build_depend>
+
+    <run_depend>ardrone_autonomy</run_depend>
+    <run_depend>joy</run_depend>
+    <run_depend>rospy</run_depend>
+
+</package>

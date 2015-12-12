@@ -1,0 +1,13 @@
+<package>
+  <description brief="AR.Drone Follow Me application">
+  	Application developed for school project to track a mobile object
+  </description>
+  <author>John Erickson</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>https://github.com/Eric0870/CSCI_5551_Proj/ardrone_followme</url>
+
+  <depend package="ardrone_autonomy" />
+  <depend package="joy" />
+  
+</package>
