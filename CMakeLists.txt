@@ -6,7 +6,6 @@ project(ardrone_followme)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   ardrone_autonomy
-  joy
   rospy
 )
 
@@ -102,7 +101,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES ardrone_followme
-#  CATKIN_DEPENDS ardrone_autonomy joy rospy
+#  CATKIN_DEPENDS ardrone_autonomy rospy
 #  DEPENDS system_lib
 )
 

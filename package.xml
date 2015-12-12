@@ -13,11 +13,9 @@
     <buildtool_depend>catkin</buildtool_depend>
 
     <build_depend>ardrone_autonomy</build_depend>
-    <build_depend>joy</build_depend>
     <build_depend>rospy</build_depend>
 
     <run_depend>ardrone_autonomy</run_depend>
-    <run_depend>joy</run_depend>
     <run_depend>rospy</run_depend>
 
 </package>
