@@ -17,6 +17,6 @@
 	    <param name="enemy_without_shell" value="0" />  <!-- Detect the indoor stickers, rather than the outdoor hull -->
 	</node>
 	
-	<!-- Launches the keyboard controller -->
-	<node name="keyboard_controller" pkg="ardrone_tutorials" type="keyboard_controller.py" required="true"/>
+	<!-- Launches the Follow Me application -->
+	<node name="follow_me" pkg="ardrone_followme" type="follow_me.py" required="true"/>
 </launch>

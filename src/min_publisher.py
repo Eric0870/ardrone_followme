@@ -11,7 +11,7 @@ import rospy
 # This file details the dependencies of the current project (for example, 
 # that ardrone_tutorials is dependent on the AR.Drone driver, ardrone_autonomy), 
 # which through the following command are loaded into the path.
-roslib.load_manifest('ardrone_tutorials')
+roslib.load_manifest('ardrone_followme')
 
 # Once the project dependencies have been loaded, we can import those which are needed by the current node. 
 # In the following command, we load the Navdata message definition from the ardrone_autonomy package.
