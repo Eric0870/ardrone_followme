@@ -35,7 +35,14 @@ class BasicDroneController(object):
 		self.fm_acq_cnt 	= 0
 		self.fm_active 		= 0
 		self.fm_dbg_cnt 	= 0
-		self.fm_exec_tmr_0 	= 15 # ~4hz
+		
+		# Configure Follow Me application control rate
+		# ROS loop rate is 50hz
+		# self.fm_exec_tmr_0 is used to reload the follow me app execution timer
+		# 	self.fm_exec_tmr_0  = 1	    # follow me control rate: 50hz
+		# 	self.fm_exec_tmr_0  = 2	    # follow me control rate: 25hz
+		# 	self.fm_exec_tmr_0  = 5   	# follow me control rate: 10hz
+		self.fm_exec_tmr_0  = 10 	# follow me control rate: 5hz
 		self.fm_exec_tmr 	= self.fm_exec_tmr_0
 		self.fm_dist_max    = 100 # cm
 
@@ -66,17 +73,17 @@ class BasicDroneController(object):
 		#
 		self.status = navdata.state
 		
+		# follow me application parsing
+		self.tags_t    = navdata.header.stamp.to_sec()
+		self.tags_cnt  = navdata.tags_count
+		self.tags_xc   = navdata.tags_xc
+		self.tags_yc   = navdata.tags_yc
+		self.tags_dist = navdata.tags_distance
+		
 		# run Follow Me at subinterval of navdata receipt
 		self.fm_exec_tmr -= 1
 		if(self.fm_active == 1 and self.fm_exec_tmr <= 0):
-			# follow me application parsing
-			self.tags_cnt  = navdata.tags_count
-			self.tags_xc   = navdata.tags_xc
-			self.tags_yc   = navdata.tags_yc
-			self.tags_dist = navdata.tags_distance
-			#
 			self.FollowMe()
-			
 			# reload follow me execution timer
 			self.fm_exec_tmr = self.fm_exec_tmr_0			
 		
@@ -84,7 +91,7 @@ class BasicDroneController(object):
 
 		self.fm_active = 1
 		self.fm_dbg_cnt += 1
-		
+			
 		if self.status == DroneStatus.Flying or self.status == DroneStatus.GotoHover or self.status == DroneStatus.Hovering:
 
 			if(self.fm_state == 0):
@@ -136,10 +143,7 @@ class BasicDroneController(object):
 					
 		# publish Follow Me data  
  		fm_msg = String()
- 		fm_msg.data = 'Received tag count: {0:d}'.format(self.tags_cnt)
- 		self.pubFollowMe.publish(fm_msg)
- 		
- 		fm_msg.data = 'Follow Me state: {0:d}'.format(self.fm_state)
+ 		fm_msg.data = '[{0:.3f}] FollowMe rate= {1:.3f}, state= {2:d}, tag cnt= {3:d}'.format(self.tags_t, (50.0/self.fm_exec_tmr_0), self.fm_state, self.tags_cnt)
  		self.pubFollowMe.publish(fm_msg)
 
 	def SendTakeoff(self):
